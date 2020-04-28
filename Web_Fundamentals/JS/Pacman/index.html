@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacman</title>
+    <meta name="description" content="Pacman game from scratch">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="world"></div>
+        <div id="pacman"></div>
+        <div id="score">100</div>
+    </div>
+    
+
+    <script>
+
+        var world = [
+            [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,2,1,2],
+            [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]
+        ];
+
+        var pacman = {
+            left: 1,
+            top: 1
+        };
+
+        var score = 0;
+
+        createWorld();
+        displayWorld();
+        displayPacman();
+        displayScore();
+
+        function createWorld(){
+            for(var i = 1; i < world.length-1; i++){
+                for(col in world[i]){
+                    if(col == 0 || col == world[i].length-1){
+                        world[i][col] = 2;
+                    }else{
+                        world[i][col] = parseInt(Math.random()*4);
+                    }
+                }
+            }
+        }
+
+        function displayWorld(){
+            var output = '';
+            for(var i = 0; i <world.length; i++){
+                output += "\n<div class='row'>\n";
+                for(var j = 0; j < world[i].length; j++){
+                    if(world[i][j] == 2){
+                        output += "<div class='brick'></div>";
+                    }else if(world[i][j] == 1){
+                        output += "<div class='coin'></div>";
+                    }else if(world[i][j] == 0){
+                        output += "<div class='empty'></div>";
+                    }else if(world[i][j] == 3){
+                        output += "<div class='cherry'></div>";
+                    }
+                }
+                output += "\n</div>";
+            }
+            console.log(output);
+            document.getElementById('world').innerHTML = output;
+        }
+
+        document.onkeydown = function(e){
+            console.log(e.keyCode);
+            if(e.keyCode == 37){
+                document.getElementById('pacman').style.transform = "rotate(0deg)";
+                if(world[pacman.top][pacman.left-1] != 2){
+                    pacman.left -= 1;
+                }
+            }
+            if(e.keyCode == 38){
+                document.getElementById('pacman').style.transform = "rotate(90deg)";
+                if(world[pacman.top-1][pacman.left] != 2){
+                    pacman.top -= 1;
+                }
+            }
+            if(e.keyCode == 39){
+                document.getElementById('pacman').style.transform = "rotate(180deg)";
+                if(world[pacman.top][pacman.left+1] != 2){
+                    pacman.left += 1;
+                }
+            }
+            if(e.keyCode == 40){
+                document.getElementById('pacman').style.transform = "rotate(270deg)";
+                if(world[pacman.top+1][pacman.left] != 2){
+                    pacman.top += 1;
+                }
+            }
+            if(world[pacman.top][pacman.left] == 1){
+                world[pacman.top][pacman.left] = 0;
+                score += 10;
+            }
+            if(world[pacman.top][pacman.left] == 3){
+                world[pacman.top][pacman.left] = 0;
+                score += 50;
+            }
+            displayScore();
+            displayWorld();
+            displayPacman();
+        }
+
+        function displayPacman(){
+            document.getElementById('pacman').style.top = pacman.top*20+"px";
+            document.getElementById('pacman').style.left = pacman.left*20+"px";
+        }
+
+        function displayScore(){
+            document.getElementById('score').innerHTML = score;
+        }
+    </script>
+
+</body>
+
+</html>

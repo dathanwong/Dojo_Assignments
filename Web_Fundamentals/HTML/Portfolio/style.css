@@ -1,0 +1,139 @@
+*{
+    vertical-align: baseline;
+	font-weight: inherit;
+	font-family: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	outline: 0;
+	padding: 0;
+    margin: 0;
+}
+
+.header{
+    background-color: #F8F8F8;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 1000px;
+    vertical-align: text-top;
+}
+
+a{
+    color: black;
+}
+
+.name{
+    font-size: xx-large;
+    font-family: "Comic Sans MS", "Comic Sans";
+}
+
+.desc{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-left: 550px;
+}
+
+.main{
+    background-image: radial-gradient(#6F5864, #4B373F);
+    padding: 20px;
+    width: 1000px;
+}
+
+.about,.photoBackground{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.photoBackground{
+    background-color: #C0C0C0;
+    width: 403px;
+    padding: 5px;
+    margin-right: 20px;
+}
+
+#me{
+    width: 400px;
+}
+
+.about{
+    background-image: linear-gradient(to right, white, #DCCCDB);
+    width: 540px;
+    height: 279px;
+    margin-bottom: 20px;
+}
+
+.about p, .about a{
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    background-image: linear-gradient(#B0B0B4,#888695,#B0B0B4);
+}
+
+.block{
+    background-image: linear-gradient(to right, white, #DCCCDB);
+    min-height: 620px;
+    margin-right: 20px;
+}
+
+.block p{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    font-size: 15px;
+    text-align: justify;
+    min-height: 200px;
+}
+
+
+.block, .block img, .badges{
+    width: 310px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.block table{
+    margin: auto;
+    border-spacing: 10px;
+}
+
+.block table img{
+    width: 50px;
+}
+
+.block button{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #407D61;
+    color: white;
+    border: 2px solid black;
+    width: fit-content;
+    margin: auto;
+    display: block;
+    padding: 3px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.footer{
+    width: 1000px;
+    background-color: #F8F8F8;
+}
+
+.footer p{
+    margin-left: 440px;
+    margin-bottom: 15px;
+}
+
+.footer .links{
+    margin-left: 400px;
+}
+
+
+.footer img{
+    width: 15px;
+    display: inline-block;
+}

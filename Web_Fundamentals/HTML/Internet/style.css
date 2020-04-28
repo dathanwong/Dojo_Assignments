@@ -1,0 +1,218 @@
+*{
+    border: 0;
+    margin: 0;
+}
+
+.wrapper, .title{
+    width: 970px;
+}
+
+.title img{
+    width: 75px;
+    display: inline-block;
+    position: absolute;
+}
+
+.title h1{
+    display: inline-block;
+    font-family: Helvetica, sans-serif;
+    vertical-align: middle;
+    font-weight: 400;
+    height: 40px;
+    padding-left: 80px;
+    padding-top: 20px;
+}
+
+.blue{
+    color: #22659E;
+}
+
+.titleBot{
+    width: 950;
+    background-image: linear-gradient(#23659E, #5183AD,#23659E);
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: xx-large;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.red{
+    color: #DA2620;
+}
+
+.left{
+    margin-top: 20px;
+    width: 190px;
+    padding: 0 3px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.leftTop{
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: small;
+    padding-bottom: 10px;
+    border-bottom: 2px solid gray;
+}
+
+.leftTop p{
+    margin-bottom: 10px;
+}
+
+.left button{
+    height: 35px;
+    padding: 7px 25px;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    box-shadow: 2px 2px gray;
+    color: white;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.watch{
+    background-image: linear-gradient(#5183AD,#23659E);
+}
+
+.resources{
+    background-image: linear-gradient(#EBAC54, #F07500);
+    
+}
+
+.ad{
+    background-image: url('ad_background.png');
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    height: 250px;
+    margin-top: 20px;
+    padding: 25px 10px;
+    
+}
+
+.ad img{
+    width: 80px;
+}
+
+.ad button{
+    background-image: linear-gradient(#6ECFDF, #1DC2DF);
+}
+
+.main, .mainBody{
+    width: 500px;
+    margin-left: 30px;
+}
+
+.main{
+    display: inline-block;
+}
+
+.dns, .phone, .phone img, .phoneInfo, .mainBot img, .mainBot .text{
+    display: inline-block;
+}
+
+.mainTop{
+    vertical-align: top;
+    display: flex;
+    justify-content: space-between;
+    
+    padding-bottom: 15px;
+    border-bottom: 1px solid gray;
+    
+}
+
+.mainTop, .mainBody, .mainBot{
+    width: 700px;
+    margin-left: 30px;
+}
+
+.dns{
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+.dns span{
+    font-family: Helvetica, sans-serif;
+    vertical-align: bottom;
+    color: #2868A0;
+}
+
+.dns, .dns img{
+    height: 20px;
+}
+
+.phone img{
+    width: 40px;
+}
+
+.phoneInfo{
+    font-family: Helvetica, sans-serif;
+    font-size: 10px;
+}
+
+.number{
+    color: #1DC0DF;
+    font-size: 20px;
+}
+
+.mainBody{
+    margin-top: 5px;
+    font-family: Helvetica, sans-serif;
+}
+
+h2{
+    color: #5185B2;
+}
+
+.mainBody p, .mainBody h2, .mainBody li{
+    margin-bottom: 5px;
+}
+
+.mainBody p, .mainBody li, .mainBot p{
+    font-size: 15px;
+}
+
+.lightBlue{
+    color: #1D9DB3;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.client{
+    width: 200px;
+    margin: auto;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mainBot{
+    border: 3px solid #1385E0;
+    margin-top: 20px;
+}
+
+.mainBot img{
+    width: 150px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.mainBot .text{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 520px;
+    font-family: Helvetica, sans-serif;
+    vertical-align: top;
+}
+
+.mainBot p{
+    padding: 5px;
+}

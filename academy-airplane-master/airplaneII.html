@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<style type="text/css">
+
+		#ocean{
+			background-image: url('ocean.jpg');
+			width: 900px;
+			height: 700px;
+		}
+
+		#player{
+			background-image: url('player.png');
+			width: 70px;
+			height: 75px;
+			position: absolute;
+			top: 600px;
+			left: 450px;
+		}
+
+		.enemy{
+			background-image: url('enemy.png');
+			width: 70px;
+			height: 75px;
+			position: absolute;
+			top: 400px;
+			left: 300px;
+		}
+
+		.missile{
+			background-color: yellow;
+			width: 2px;
+			height: 10px;
+			position: absolute;
+		}
+
+	</style>
+
+	<div id="ocean">
+		<div id="player"></div>
+		<div id="enemies"></div>
+		<div id="missiles"></div>
+	</div>
+
+
+
+	<script type="text/javascript">
+	
+	var player = {
+		top: 600,
+		left: 300
+	}
+
+	//dir 1 means moving down dir -1 means up
+	var enemies = [
+		{top: 300, left: 300, dir: 1},
+		{top: 300, left: 380, dir: 1},
+		{top: 300, left: 220, dir: 1},
+		{top: 220, left: 300, dir: 1},
+		{top: 220, left: 380, dir: 1},
+		{top: 220, left: 220, dir: 1},
+	]
+
+	var missiles = []
+
+	gameLoop();
+
+
+	function drawPlayer(){
+		document.getElementById("player").style.top = player.top + "px";
+		document.getElementById("player").style.left = player.left + "px";
+	}
+
+	function drawEnemies(){
+		output = "";
+		enemies.forEach(enemy => {
+			output += "<div class='enemy' style='left:" + enemy.left + "px; top:" + enemy.top + "px'></div>";
+		});
+		document.getElementById("enemies").innerHTML = output;
+	}
+
+	document.onkeydown = function(e){
+		console.log(e);
+		if(e.keyCode == 37){ //left
+			if(player.left >10){
+				player.left -= 10;
+			}
+		}
+		if(e.keyCode == 39){ //right
+			if(player.left < 840){
+				player.left += 10;
+			}
+		}
+		if(e.keyCode == 38){ //up
+			if(player.top > 470){
+				player.top -= 10;
+			}
+		}
+		if(e.keyCode == 40){ //down
+			if(player.top < 610){
+				player.top += 10;
+			}
+		}
+		if(e.keyCode == 32){ //space bar
+			missiles.push({left:player.left + 32, top: player.top-10})
+			drawMissiles();
+		}
+		drawPlayer();
+	}
+
+	function moveEnemies(){
+		enemies.forEach(enemy => {
+			//change direction if hits bottom
+			if(enemy.top > 600){
+				enemy.dir = -1;
+			}
+			if(enemy.top < 70){
+				enemy.dir = 1;
+			}
+			enemy.top += 3*enemy.dir;
+		});
+		drawEnemies();
+	}
+
+	function drawMissiles(){
+		output = "";
+		missiles.forEach(missile =>{
+			output += "<div class='missile' style='left:" + missile.left + "px; top:" + missile.top + "px'></div>";
+		});
+		document.getElementById("missiles").innerHTML = output;
+	}
+
+	function moveMissiles(){
+		missiles.forEach(missile => {
+			//Check collision
+			enemies.forEach(enemy => {
+				if(missile.left >= enemy.left && missile.left <= enemy.left+70 && missile.top >= enemy.top && missile.top <= enemy.top+70){
+					//remove enemy and missile
+					enemies.splice(enemies.indexOf(enemy),1);
+					missiles.splice(missiles.indexOf(missile),1);
+				}
+			});
+			
+			//move missile
+			missile.top -= 8;
+		});
+		drawMissiles();
+	}
+
+	function gameLoop(){
+		moveEnemies();
+		moveMissiles();
+		drawMissiles();
+		drawPlayer();
+		setTimeout(gameLoop, 10)
+	}
+
+	</script>
+</body>
+</html>

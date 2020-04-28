@@ -1,0 +1,244 @@
+<html>
+
+<head>
+	<title>NinjaMan</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.row {
+			line-height: 0;
+		}
+
+		.wall {
+			background-color: blue;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+		}
+
+		.sushi{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('img/sushi.png');
+			display: inline-block;
+			background-size: contain;
+		}
+
+		.onigiri{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('img/onigiri.png');
+			display: inline-block;
+			background-size: contain;
+		}
+
+		.blank{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+		}
+
+		#ninjaman{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('img/ninja.gif');
+			background-size: contain;
+			position: absolute;
+			left: 40px;
+			top: 40px;
+		}
+
+		#ghost1{
+			background-color: black;
+			height: 40px;
+			width: 40px;
+			display: inline-block;
+			background-image: url('img/pumpky.gif');
+			background-size: contain;
+			position: absolute;
+			left: 80px;
+			top: 40px;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div id='world'></div>
+	<div id="ninjaman"></div>
+	<div id="ghost1"></div>
+	
+</body>
+
+<script type="text/javascript">
+	// var world = [
+	// [1,1,1,1,1],
+	// [1,0,2,2,1],
+	// [1,2,1,2,1],
+	// [1,2,2,2,1],
+	// [1,0,1,1,1],
+	// [1,3,3,2,1],
+	// [1,2,1,2,1],
+	// [1,2,2,2,1],
+	// [1,0,3,2,1],
+	// [1,2,3,2,1],
+	// [1,2,2,2,1],
+	// ];
+	var world = generateWorld();
+	var worldDict = {
+		0: 'blank',
+		1: 'wall',
+		2: 'sushi',
+		3: 'onigiri'
+	}
+
+	var ninjaman = {
+		pix: 40,
+		x: 1,
+		y:1,
+		count:0,
+		lives:3
+	}
+
+	var ghost1 = {
+		pix: 40,
+		x: 2,
+		y: 1
+	}
+
+	//timer used to move ghost every interval
+	//var intervalId = window.setInterval(moveGhost,1000);
+
+	//Initialize world
+	drawWorld();
+	drawNinjaMan();
+	drawGhost1();
+
+
+	//Functions
+
+	function generateWorld(){
+		//world will be dim x dim
+		var dim = 10;
+		var world = [];
+		for(var r = 0; r < dim; r++){
+			var row = [];
+			for(var c = 0; c<dim; c++){
+				//Make sure border is always a wall
+				if((r == 0) || (r == dim-1) || (c == 0) || (c==dim-1)){
+					row.push(1);
+				}else{
+					//make sure top left always blank as starting point
+					if(r == 1 && c == 1){
+						row.push(0);
+					}else{
+						//populate square with random value
+						row.push(Math.floor((Math.random() * 4)));
+					}
+				}
+			}
+			world.push(row);
+		}
+		return world;
+	}
+
+	function drawNinjaMan(){
+		document.getElementById('ninjaman').style.top = (ninjaman.y*ninjaman.pix)+'px';
+		document.getElementById('ninjaman').style.left = (ninjaman.x*ninjaman.pix) + 'px';
+	}
+
+	function drawGhost1(){
+		document.getElementById('ghost1').style.top = (ghost1.y*ninjaman.pix)+'px';
+		document.getElementById('ghost1').style.left = (ghost1.x*ninjaman.pix) + 'px';
+	}
+
+	document.onkeydown = function(e){
+		//Handle movement
+		if(e.keyCode == 37){
+			if(world[ninjaman.y][ninjaman.x-1] != 1){
+				ninjaman.x--;
+			}
+		}
+		if(e.keyCode == 39){
+			if(world[ninjaman.y][ninjaman.x+1] != 1){
+				ninjaman.x++;
+			}
+		}
+		if(e.keyCode == 38){
+			if(world[ninjaman.y-1][ninjaman.x] != 1){
+				ninjaman.y--;
+			}
+		}
+		if(e.keyCode == 40){
+			if(world[ninjaman.y+1][ninjaman.x] != 1){
+				ninjaman.y++;
+			}
+		}
+		//Handle eating sushi
+		if(world[ninjaman.y][ninjaman.x] >= 2){
+			//increment count
+			if(world[ninjaman.y][ninjaman.x] == 2){
+				ninjaman.count+=10;
+			}
+			if(world[ninjaman.y][ninjaman.x] == 3){
+				ninjaman.count+=5;
+			}
+			//change value to blank and increment count
+			world[ninjaman.y][ninjaman.x] = 0;
+			drawWorld();
+		}
+
+		//Update UI
+		drawNinjaMan();
+		drawGhost1();
+	}
+
+	function drawWorld(){
+		output = "";
+		for(var r = 0; r < world.length; r++){
+			output += "<div class = 'row'>";
+			for(var c = 0; c < world[r].length; c++){
+				output += "<div class='"+worldDict[world[r][c]]+"'></div>";
+			}
+			output += "</div>";
+		}
+		//Show score at the bottom
+		output += "<div>Score:" + ninjaman.count + "</div>";
+		//Show lives at the bottom
+		output += "<div>Lives:" + ninjaman.lives + "</div>";
+		document.getElementById('world').innerHTML = output;
+		
+		
+	}
+
+	function moveGhost(){
+		//Move ghost closer to ninjaman
+		while(ghost1.x != ninjaman.x && ghost1.y != ninjaman.y){
+			//try to close x distance first unless there is a wall
+			if(ghost1.x > ninjaman.x && world[ghost1.y][ghost1.x-1] != 1){
+				ghost1.x--;
+			}else if(ghost1.x < ninjaman.x && world[ghost1.y][ghost1.x+1] != 1){
+				ghost1.x++;
+			}
+			if(ghost1.y > ninjaman.y && world[ghost1.y-1][ghost1.x] != 1){
+				ghost1.y--;
+			}else if(ghost1.y < ninjaman.y && world[ghost1.y+1][ghost1.x] != 1){
+				ghost1.y++;
+			}
+		}
+		drawGhost1();
+	}
+
+</script>
+
+</html>

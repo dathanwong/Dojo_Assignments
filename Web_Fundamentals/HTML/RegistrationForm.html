@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <form action="temp.php">
+        <h1>My Registration Form</h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td>First Name:</td>
+                    <td>
+                        <input type="text" name="firstName">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td>
+                        <input type="text" name="lastName">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>
+                        <input type="email" name="email">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                    <td>PW Confirm</td>
+                    <td><input type="password" name="pwConfirm"></td>
+                </tr>
+                <tr>
+                    <td>Birthday</td>
+                    <td><input type="date" name="birthday"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <label>
+            <input type="radio" name="gender">Male
+        </label>
+        <label>
+            <input type="radio" name="gender">Female
+        </label>
+        <label>
+            <input type="radio" name="gender">Other
+        </label>
+        <br>
+        <br>
+        <label>
+            A short description about yourself:
+            <br>
+            <textarea style="width: 220px; height: 100px;"></textarea>
+        </label>
+        <br>
+        <br>
+        <label>
+            Favorite Language
+            <select>
+                <option value="javascript">JavaScript</option>
+                <option value="java">Java</option>
+                <option value="c#">C#</option>
+            </select>
+        </label>
+        <br>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

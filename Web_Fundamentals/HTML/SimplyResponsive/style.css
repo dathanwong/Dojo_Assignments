@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h1, p{
+    margin: 5px 10px;
+    padding: 15px 5px;
+    font-family: Helvetica, sans-serif;
+    border: 1px solid #E1D79B;
+}
+
+h1{
+    background-color: #B3B3B3;
+    
+}
+
+p{
+    background-color: #CCCCCC;    
+}
+
+.text p{
+    background-color: #FFFF9A;
+    font-family: Helvetica, sans-serif;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 480px){
+    .desktop, .tablet{
+        display: none;
+    }
+    .phone{
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 481px){
+    .desktop, .phone{
+        display: none;
+    }
+    .tablet{
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    .phone, .tablet{
+        display: none;
+    }
+    .desktop{
+        display: block;
+    }
+}

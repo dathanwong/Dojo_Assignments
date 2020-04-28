@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="jQuery functions with examples">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>jQuery Functions Sample</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.click()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 click" id="count">.click() Count:0</button>
+                    <p class="col-8 text-center">Click button to increase count.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.hide()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 hide">.hide()</button>
+                    <p class="col-8 text-center">Click button to hide itself.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.show()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 show">.show()</button>
+                    <p class="col-8 text-center">Click button to show some hidden text.</p>
+                    <p id="hiddenText">This text is hidden</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.toggle()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 toggle">.toggle()</button>
+                    <p class="col-8 text-center">Click button to see title toggled between showing and hidden.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.slideDown()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 slideDown">.slideDown()</button>
+                    <p class="col-8 text-center">Click button to see button slide down.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.slideUp()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 slideUp">.slideUp()</button>
+                    <p class="col-8 text-center">Click button to see it slide up.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.slideToggle()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 slideToggle">.slideToggle()</button>
+                    <p class="col-8 text-center">Click button to see the text perform a slideToggle.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.fadeIn()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 fadeIn">.fadeIn()</button>
+                    <p class="col-8 text-center">Click button to see the hidden text fade in.</p>
+                    <p id="hiddenFade">This text will fade in</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.fadeOut()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 fadeOut">.fadeOut()</button>
+                    <p class="col-8 text-center">Click button to see the button fade out.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.addClass()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 addClass">.addClass()</button>
+                    <p class="col-8 text-center">Click button to see a class get added which changes the button color.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.before()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 before">.before()</button>
+                    <p class="col-8 text-center">Click button to see another button get added before the current button.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.after()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 after">.after()</button>
+                    <p class="col-8 text-center">Click button to see another button get added after the current button.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.append()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 append">.append()</button>
+                    <p class="col-8 text-center">Click button to see another button get appended to the current button.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.html()</h1>
+                </div>
+                <div class="row">
+                    <button class="col-2 html">.html()</button>
+                    <p class="col-8 text-center">Click button to see the text change to the buttons html.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom py-3">
+            <div class="col">
+                <div class="row">
+                    <h1 class="col-12 text-center">.attr()</h1>
+                </div>
+                <div class="row">
+                    <button checked="attribute" class="col-2 attr">.attr()</button>
+                    <p class="col-8 text-center">Click button to see the text change to the buttons "checked" attribute.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var count = 0;
+        document.getElementById("hiddenText").style.display = "none";
+        document.getElementById("hiddenFade").style.display = "none";
+
+        $(".click").click(function(){
+            count++;
+            document.getElementById("count").innerText= ".click() Count:" + count;
+        });
+        $(".hide").click(function(){
+            $(this).hide();
+        });
+        $(".show").click(function(){
+            $("#hiddenText").show();
+        });
+
+
+        $(".toggle").click(function(){
+            console.log("toggle clicked");
+            $(this).siblings("p").toggle();
+        });
+
+        //Not Working
+        $(".slideDown").click(function(){
+            console.log("slideDown clicked");
+            $(this).slideDown();
+        });
+
+        $(".slideUp").click(function(){
+            console.log("slide up clicked")
+            $(this).slideUp();
+        });
+
+        $(".slideToggle").click(function(){
+            $(this).siblings("p").slideToggle();
+        });
+
+        $(".fadeIn").click(function(){
+            $("#hiddenFade").fadeIn();
+        });
+
+        $(".fadeOut").click(function(){
+            $(this).fadeOut();
+        })
+
+        $(".addClass").click(function(){
+            $(this).addClass("btn-danger");
+        });
+        $(".before").click(function(){
+            $(this).before("<button>New Button</button>");
+        });
+        $(".after").click(function(){
+            $(this).after("<button>New Button</button>");
+        });
+        $(".append").click(function(){
+            $(this).append("<button>New Button</button>");
+        });
+
+        //Not working
+        $(".html").click(function(){
+            var text = $(this).html();
+            console.log("Html clicked");
+            $(this).text(text);
+        });
+
+        $(".attr").click(function(){
+            $(this).text($(this).attr("checked"));
+        })
+    </script>
+</body>
+</html>
