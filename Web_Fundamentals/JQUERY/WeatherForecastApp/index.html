@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Weather Forecast App</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    
+    <div class="container pt-4">
+
+        <form class="form" action="">
+            <label for="city">City:</label>
+            <input id="city" type="text" name="city" required >
+            <input type="submit" value="Search">
+        </form>
+        <p class="forecast"></p>
+        <p class="temp"></p>
+        <p class="coord"></p>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        console.log("test");
+        var key = "2711588b1cff31a9fb26d6a29ce8809a";
+
+        $('.form').submit(function(){
+            //Create API Url
+            var loc = $("input").val();
+            var url = "http://api.openweathermap.org/data/2.5/weather?q=" + loc + "&appid=" + key;
+            //Get json from API
+            var name = null;
+            $.get(url,function(data){
+                try{
+                    var forecast = data.weather[0].description;
+                    var temp = (data.main.temp - 273.15)*9/5 + 32;
+                    var coord = data.coord;
+                    name = data.name;
+                    //update html with json response
+                    $(".forecast").text(name + " : " + forecast);
+                    $(".temp").text("Temperature : " + temp.toFixed(2) + " F");
+                    $(".coord").text("Coord: " + coord.lat + ", " + coord.lon);
+                    console.log("This is the name: " + name );
+                }catch{
+                    $(".forecast").text("Invalid City");
+                }
+            }, 'json');
+            return false;
+        })
+    </script>
+  </body>
+</html>

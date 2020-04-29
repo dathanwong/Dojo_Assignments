@@ -1,0 +1,13 @@
+*{
+    border: 1px solid red;
+}
+
+.day, .weekday{
+    min-width: 100px;
+    border: 1px solid black;
+}
+
+.day{
+    min-height: 100px;
+    
+}
