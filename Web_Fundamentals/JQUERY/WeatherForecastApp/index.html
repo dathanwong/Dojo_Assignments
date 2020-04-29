@@ -40,8 +40,8 @@
             var url = "http://api.openweathermap.org/data/2.5/weather?q=" + loc + "&appid=" + key;
             //Get json from API
             var name = null;
-            $.get(url,function(data){
-                try{
+            $.ajax(url)
+                .done(function(data){
                     var forecast = data.weather[0].description;
                     var temp = (data.main.temp - 273.15)*9/5 + 32;
                     var coord = data.coord;
@@ -51,10 +51,10 @@
                     $(".temp").text("Temperature : " + temp.toFixed(2) + " F");
                     $(".coord").text("Coord: " + coord.lat + ", " + coord.lon);
                     console.log("This is the name: " + name );
-                }catch{
-                    $(".forecast").text("Invalid City");
-                }
-            }, 'json');
+                })
+                .fail(function(data){
+                    alert("Invalid city name please try again.");
+                });
             return false;
         })
     </script>
