@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>What's that Pokemon?</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+  <body>
+      
+    <div class="container">
+        <div class="row">
+            <div id="icons" class="col-7">
+            
+            </div>
+            <div id="pokedex" class="col-5 sticky-top">
+                <h2 id="name"></h2>
+                <img id="thumbnail" src="" alt="pokemon">
+                <h4>Types</h4>
+                <ul id="types"></ul>
+                <h4>Height</h4>
+                <p id="height"></p>
+                <h4>Weight</h4>
+                <p id="weight"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+    <script>
+        //Default show a pokemon
+        updatePokedex(1);
+        //function to populate pokedex info
+        function updatePokedex(num){
+            $.get("https://pokeapi.co/api/v2/pokemon/" + num, function(data){
+                 console.log(data);
+                 //Update name
+                 $("#name").text(data.name);
+                //Update types
+                var types = data.types;
+                var html = "";
+                for(type of types){
+                    html += "<li>"+type.type.name+"</>";
+                }
+                $("#types").html(html);
+                //update height
+                $("#height").text(data.height);
+                //update weight
+                $("#weight").text(data.weight);
+                //update image
+                $("#thumbnail").attr("src",data.sprites.front_default);
+            }
+            , "json");
+        }
+        //Populate all pokemon icons
+        for(var i = 1; i <= 151; i++){
+            $("#icons").append("<img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+ i + ".png' id='" + i + "' alt='Pokemon'>")
+        }
+        //Handle icon click
+        $("#icons img").click(function(){
+            console.log($(this).attr("id") + " Clicked");
+            updatePokedex($(this).attr("id"));
+        });
+    </script>
+</body>
+</html>
