@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja To Cat</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="row mb-1">
+        <div class="col">
+            <img src="ninja0.png" src2="cat0.png" alt="puzzle 0">
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col">
+            <img src="ninja1.png"  src2="cat1.png" alt="puzzle 1">
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col">
+            <img src="ninja2.png"  src2="cat2.png" alt="puzzle 2">
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col">
+            <img src="ninja3.png"  src2="cat3.png" alt="puzzle 3">
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col">
+            <img src="ninja4.png"  src2="cat4.png" alt="puzzle 4">
+        </div>
+    </div>
+
+
+    <script>
+
+        var images = ['src', 'src2'];
+
+        $("img").click(function(){
+            console.log($(this).attr('src'));
+            var temp = $(this).attr('src');
+            $(this).attr('src',$(this).attr('src2'));
+            $(this).attr('src2',temp);
+        });
+    </script>
+</body>
+</html>
