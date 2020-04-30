@@ -15,3 +15,7 @@
 .title{
     justify-content: space-between;
 }
+
+.balance{
+    color: green;
+}

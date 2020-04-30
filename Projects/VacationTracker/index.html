@@ -14,6 +14,7 @@
       
     <div class="container">
 
+        <!-- Header -->
         <div class="row">
             <div class="col text-center title">
                 <button class="btn-info" id="previousMonth">prev</button>
@@ -23,7 +24,7 @@
             </div>
         </div>
 
-
+        <!-- Calendar -->
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -38,20 +39,56 @@
             </thead>
             <tbody id="calendar"></tbody>
         </table>
+        <!-- Event Entry Area  -->
+        <form action="">
+            <label for="eventName">Event Name</label>
+            <input id="eventName" type="text" name="eventName" required>
+            <label for="eventStart">Event Start</label>
+            <input id="eventStart" type="datetime-local" name="eventStart" required>
+            <label for="eventEnd">Event End</label>
+            <input id="eventEnd" type="datetime-local" name="eventEnd" required>
+            <button id="addEvent" type="button" class="btn btn-primary">Add Event</button>
+        </form>
+        <!-- Event list -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Event Name</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
+                </tr>
+            </thead>
+            <tbody id="events">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         
-        //Get today's date
+        var events = [];
+
+        //Default show today's date
         var date = new Date();
         populateCalendar(date.getFullYear(),date.getMonth());
 
-        //Handle month button clicks
+        //Testing area
+        getBalance(date);
+
+        //Default populate today in event inputs
+        $("#eventName").val("Test");
+        $("#eventStart").val(date.toISOString().slice(0,-8));
+        $("#eventEnd").val(date.toISOString().slice(0,-8));
+        //Handle next and previous month button clicks
         $("#previousMonth").click(function(){
             //Update month
             date.setMonth(date.getMonth()-1);
@@ -61,6 +98,52 @@
             date.setMonth(date.getMonth()+1);
             populateCalendar(date.getFullYear(), date.getMonth());
         });
+
+        //Handle submit button click to add events to calendar
+        $("#addEvent").click(function(){
+            console.log("Event added");
+            var name = $("#eventName").val();
+            var start = $("#eventStart").val();
+            var end = $("#eventEnd").val();
+            events.push({"name":name,"start":start,"end":end});
+            console.log(events[0].name + " " + events[0].start + " " + events[0].end);
+            populateEvents(events);
+        });
+
+        //Get vacation balance on the specified day
+        function getBalance(date){
+            //Variables for initializing vacation days
+            var balanceStart = new Date(2020,0,1); //Specifies the day that we want to start calculating the balance at
+            var balance = 40; //in hours, intialize with the balance at the specified balanceStart
+            var accRate = 5; //in hour
+            var accDay = 5; //Day that the balance should increase 0 = Sunday, 1 = Monday, 2 = Tuesday etc.
+            var accWeeks = 2; //accWeeks and accDay together tells what day of which week to accure, for example accDay = 5 and accWeeks = 2 means every two Fridays the balance increases
+            var diffInDays = Math.floor((date.getTime()-balanceStart.getTime())/86400000);
+            var weekNum = 0;
+            for(var i = 0; i < diffInDays; i++){
+                //Add up any accrued balance
+                balanceStart.setDate(balanceStart.getDate() + 1);
+                //if day meets conditions of accrual then increment balance
+                if(balanceStart.getDay() === accDay){
+                    weekNum++;
+                    if(weekNum === accWeeks){
+                        balance += accRate;
+                        weekNum = 0;
+                    }
+                }
+            }
+            return balance;
+        }
+
+        //Function to show event list
+        function populateEvents(events){
+            //Clear current events list
+            $("#events").empty();
+            //Populate the table
+            for(var i = 0; i < events.length;i++){
+                $("#events").append("<tr><td>"+events[i].name+"</td><td>"+events[i].start+"</td><td>"+events[i].end+"</td></tr>");
+            }
+        }
 
 
         //Function to populate the calendar
@@ -79,7 +162,7 @@
             "November",
             "December"
             ];
-            
+            console.log("Populating Calendar");
             //clear the calendar
             $("#calendar").empty();
             //Update title
@@ -88,10 +171,8 @@
             //Find the first day
             var first = getFirstDay(year,month);
             var last = new Date(year, month+1, 0).getDate();
-            console.log(last);
-            console.log(first);
             var count = 0;
-            var date = 1;
+            var date = new Date(year,month,1);
             var week = 0;
             for(var i = 0 ; i < 42; i++){
                 //if already added 7 cols then add a new row
@@ -100,17 +181,17 @@
                     $("#calendar").append("<tr class='dates-"+week+"'></tr>");
                 }
                 //if the weekday isn't the first of the month yet then add a blank item
-                if(count < first || date > last){
+                if(count < first || date.getDate() > last){
                     $(".dates-"+ week).append("<td></td>");
                     count++;
                 }else{
-                    if(date <= last){
-                        $(".dates-"+week).append("<td><h4>"+date+"</h4></td>");  
-                        date++;
+                    if(date.getDate() <= last){
+                        //Add date item to calendar
+                        $(".dates-"+week).append("<td><p>"+date.getDate()+"</p><p class='balance'>"+getBalance(date)+"</p></td>");  
+                        date.setDate(date.getDate()+1);
                     }
                 }
             }
-            
         }
 
         //Function returns the day of the week that the first day of the given month is(Monday:0, Tuesday:1, Wednesday:2)
