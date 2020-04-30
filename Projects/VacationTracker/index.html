@@ -13,7 +13,7 @@
   <body>
       
     <div class="container">
-        <!-- Header row -->
+
         <div class="row">
             <div class="col text-center title">
                 <button class="btn-info" id="previousMonth">prev</button>
@@ -22,19 +22,22 @@
                 <button class="btn-info" id="nextMonth">next</button>
             </div>
         </div>
-        <!-- Weekday headers -->
-        <div class="row">
-            <div class="col-1 weekday">Sunday</div>
-            <div class="col-1 weekday">Monday</div>
-            <div class="col-1 weekday">Tuesday</div>
-            <div class="col-1 weekday">Wednesday</div>
-            <div class="col-1 weekday">Thursday</div>
-            <div class="col-1 weekday">Friday</div>
-            <div class="col-1 weekday">Saturday</div>
-        </div>
-        <!-- Begin dates row -->
-        <div class="dates"></div>
-            <!-- End dates rows -->
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Sunday</th>
+                    <th scope="col">Monday</th>
+                    <th scope="col">Tuesday</th>
+                    <th scope="col">Wednesday</th>
+                    <th scope="col">Thursday</th>
+                    <th scope="col">Friday</th>
+                    <th scope="col">Saturday</th>
+                </tr>
+            </thead>
+            <tbody id="calendar"></tbody>
+        </table>
     </div>
 
     <!-- Optional JavaScript -->
@@ -77,8 +80,8 @@
             "December"
             ];
             
-            //clear the dates div
-            $(".dates").empty();
+            //clear the calendar
+            $("#calendar").empty();
             //Update title
             $(".month").text(months[month]);
             $(".year").text(year);
@@ -94,15 +97,15 @@
                 //if already added 7 cols then add a new row
                 if(i%7 === 0){
                     week++;
-                    $(".dates").append("<div class='row dates-"+week+"'></div>");
+                    $("#calendar").append("<tr class='dates-"+week+"'></tr>");
                 }
-                //if the weekday isn't the first of the month yet then add a blank col
+                //if the weekday isn't the first of the month yet then add a blank item
                 if(count < first || date > last){
-                    $(".dates-"+ week).append("<div class='col1'><div class='day'></div></div>");
+                    $(".dates-"+ week).append("<td></td>");
                     count++;
                 }else{
                     if(date <= last){
-                        $(".dates-"+week).append("<div class='col1'><div class='day'><h4>"+date+"</h4></div></div>");  
+                        $(".dates-"+week).append("<td><h4>"+date+"</h4></td>");  
                         date++;
                     }
                 }
