@@ -15,14 +15,10 @@
     <div class="container">
         <!-- Header row -->
         <div class="row">
-            <div class="col-1">
+            <div class="col text-center title">
                 <button class="btn-info" id="previousMonth">prev</button>
-            </div>
-            <div class="col-5 month" monthNum = "1">
-                January
-            </div>
-            <div class="col-1 year" yearNum = "2020">2020</div>
-            <div class="col-1">
+                <span class="month">January</span>
+                <span class="year">2020</span>
                 <button class="btn-info" id="nextMonth">next</button>
             </div>
         </div>
@@ -37,189 +33,8 @@
             <div class="col-1 weekday">Saturday</div>
         </div>
         <!-- Begin dates row -->
-        <div class="row">
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-        </div><div class="row">
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-        </div><div class="row">
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-        </div><div class="row">
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
-            <div class="col1">
-                <div class="day">
-                    <h4 class="date">1</h4>
-                </div>
-            </div>
+        <div class="dates"></div>
             <!-- End dates rows -->
-        </div>
     </div>
 
     <!-- Optional JavaScript -->
@@ -228,9 +43,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-        //Set day numbers on calendar
-        //Default to current month
-        var months = [
+        
+        //Get today's date
+        var date = new Date();
+        populateCalendar(date.getFullYear(),date.getMonth());
+
+        //Handle month button clicks
+        $("#previousMonth").click(function(){
+            //Update month
+            date.setMonth(date.getMonth()-1);
+            populateCalendar(date.getFullYear(), date.getMonth());
+        });
+        $("#nextMonth").click(function(){
+            date.setMonth(date.getMonth()+1);
+            populateCalendar(date.getFullYear(), date.getMonth());
+        });
+
+
+        //Function to populate the calendar
+        function populateCalendar(year, month){
+            var months = [
             "January",
             "February",
             "March",
@@ -239,17 +71,60 @@
             "June",
             "July",
             "August",
-            "Septembery",
+            "September",
             "October",
-            "Novemeber",
+            "November",
             "December"
-        ]
-        var date = new Date();
-        var year = date.getFullYear();
-        var month = date.getMonth();
-        $(".month").text(months[month]);
-        $(".year").text(year);
-        console.log(month);
+            ];
+            
+            //clear the dates div
+            $(".dates").empty();
+            //Update title
+            $(".month").text(months[month]);
+            $(".year").text(year);
+            //Find the first day
+            var first = getFirstDay(year,month);
+            var last = new Date(year, month+1, 0).getDate();
+            console.log(last);
+            console.log(first);
+            var count = 0;
+            var date = 1;
+            var week = 0;
+            for(var i = 0 ; i < 42; i++){
+                //if already added 7 cols then add a new row
+                if(i%7 === 0){
+                    week++;
+                    $(".dates").append("<div class='row dates-"+week+"'></div>");
+                }
+                //if the weekday isn't the first of the month yet then add a blank col
+                if(count < first || date > last){
+                    $(".dates-"+ week).append("<div class='col1'><div class='day'></div></div>");
+                    count++;
+                }else{
+                    if(date <= last){
+                        $(".dates-"+week).append("<div class='col1'><div class='day'><h4>"+date+"</h4></div></div>");  
+                        date++;
+                    }
+                }
+            }
+            
+        }
+
+        //Function returns the day of the week that the first day of the given month is(Monday:0, Tuesday:1, Wednesday:2)
+        function getFirstDay(year,month){
+            var days = [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ]
+            var first = new Date(year, month, 1);
+            console.log("First day of the month is a " + days[first.getDay()]);
+            return first.getDay();
+        }
     </script>
 
     </body>

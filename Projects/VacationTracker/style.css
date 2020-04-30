@@ -1,13 +1,17 @@
-*{
+/* *{
     border: 1px solid red;
-}
+} */
 
 .day, .weekday{
-    min-width: 100px;
+    min-width: 110px;
     border: 1px solid black;
 }
 
 .day{
     min-height: 100px;
     
+}
+
+.title{
+    justify-content: space-between;
 }
