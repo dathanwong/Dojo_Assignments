@@ -1,6 +1,15 @@
-/* *{
-    border: 1px solid red;
-} */
+/* 
+Color Scheme
+red: f6511d
+yellow: ffb400
+blue: 00a6ed
+green: 7fb800
+gray: 0d2c54
+*/
+
+.container{
+    
+}
 
 .day, .weekday{
     min-width: 110px;
@@ -12,18 +21,26 @@
     
 }
 
-.title{
-    justify-content: space-between;
+.btn-info{
+    background-color: #0d2c54;
+}
+
+.balance, .increase, .decrease{
+    color: white;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .balance{
-    color: blue;
+    background-color: #00a6ed;
 }
 
 .increase{
-    color:green;
+    background-color:#7fb800;
+    
 }
 
 .decrease{
-    color: red;
+    background-color: #f6511d;
 }

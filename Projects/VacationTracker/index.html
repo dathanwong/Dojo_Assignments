@@ -12,15 +12,18 @@
 </head>
   <body>
       
-    <div class="container">
+    <div class="container p3">
 
         <!-- Header -->
         <div class="row">
-            <div class="col text-center title">
-                <button class="btn-info" id="previousMonth">prev</button>
-                <span class="month">January</span>
-                <span class="year">2020</span>
-                <button class="btn-info" id="nextMonth">next</button>
+            <div class="col px-5 py-3">
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-info" id="previousMonth">PREV</button>
+                    <div>
+                        <h1 class="month d-inline-block">January</h1><h1 class="year d-inline-block">2020</h1>
+                    </div>
+                    <button class="btn btn-info" id="nextMonth">NEXT</button>
+                </div>
             </div>
         </div>
 
@@ -41,13 +44,23 @@
         </table>
         <!-- Event Entry Area  -->
         <form action="">
-            <label for="eventName">Event Name</label>
-            <input id="eventName" type="text" name="eventName" required>
-            <label for="eventStart">Event Start</label>
-            <input id="eventStart" type="datetime-local" name="eventStart" required>
-            <label for="eventEnd">Event End</label>
-            <input id="eventEnd" type="datetime-local" name="eventEnd" required>
-            <button id="addEvent" type="button" class="btn btn-primary">Add Event</button>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label for="eventName">Event Name</label>
+                    <input id="eventName" type="text" name="eventName" required>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label for="eventStart">Event Start</label>
+                    <input id="eventStart" type="datetime-local" name="eventStart" required>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label for="eventEnd">Event End</label>
+                    <input id="eventEnd" type="datetime-local" name="eventEnd" required>
+                </div>
+            </div>
+            <div class="row my-2 justify-content-center">
+                <button id="addEvent" type="button" class="col-3 btn btn-info">Add Event</button>
+            </div>
         </form>
         <!-- Event list -->
         <table class="table">

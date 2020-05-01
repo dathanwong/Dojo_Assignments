@@ -195,9 +195,9 @@
                     //Add date item to calendar
                     //html adds the day number, number of hours, and how much was added or lost on that day
                     if(yesterdayBalance > todayBalance){
-                        $(".dates-"+week).append("<td><p>"+today.getDate()+"</p><p class='balance'>"+todayBalance+"</p><p class='decrease'>"+(todayBalance-yesterdayBalance)+"</p></td>");  
+                        $(".dates-"+week).append("<td><p>"+today.getDate()+"</p><p class='balance decrease'>"+todayBalance+"</p></td>");  
                     }else if (yesterdayBalance < todayBalance){
-                        $(".dates-"+week).append("<td><p>"+today.getDate()+"</p><p class='balance'>"+todayBalance+"</p><p class='increase'>"+(todayBalance-yesterdayBalance)+"</p></td>");  
+                        $(".dates-"+week).append("<td><p>"+today.getDate()+"</p><p class='balance increase'>"+todayBalance+"</p></td>");  
                     }else{
                         $(".dates-"+week).append("<td><p>"+today.getDate()+"</p><p class='balance'>"+todayBalance+"</p></td>");  
                     }
