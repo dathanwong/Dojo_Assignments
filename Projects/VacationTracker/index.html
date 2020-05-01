@@ -105,7 +105,7 @@
             var name = $("#eventName").val();
             var start = $("#eventStart").val();
             var end = $("#eventEnd").val();
-            events.push({"name":name,"start":start,"end":end});
+            events.push({"name":name,"start":Date.parse(start),"end":Date.parse(end)});
             console.log(events[0].name + " " + events[0].start + " " + events[0].end);
             populateEvents(events);
         });
@@ -118,10 +118,11 @@
             var accRate = 5; //in hour
             var accDay = 5; //Day that the balance should increase 0 = Sunday, 1 = Monday, 2 = Tuesday etc.
             var accWeeks = 2; //accWeeks and accDay together tells what day of which week to accure, for example accDay = 5 and accWeeks = 2 means every two Fridays the balance increases
-            var diffInDays = Math.floor((date.getTime()-balanceStart.getTime())/86400000);
+            var diffInDays = diffDays(balanceStart,date);
             var weekNum = 0;
+            var workDayLength = 8; //Specifies numbers of hours in a workday
+
             for(var i = 0; i < diffInDays; i++){
-                //Add up any accrued balance
                 balanceStart.setDate(balanceStart.getDate() + 1);
                 //if day meets conditions of accrual then increment balance
                 if(balanceStart.getDay() === accDay){
@@ -131,8 +132,21 @@
                         weekNum = 0;
                     }
                 }
+                //decrement if there is an event
+                //Right now it is not calculating hours and only calculating days
+                for(var j = 0; j < events.length; j++){
+                    if(events[j].start <= balanceStart.getTime() && events[j].end >= balanceStart.getTime()){
+                        balance -= workDayLength;
+                        break;
+                    }
+                }
             }
             return balance;
+        }
+
+        //Calculates the difference in the number of days between two dates
+        function diffDays(start, end){
+            return Math.floor((end.getTime()-start.getTime())/86400000);
         }
 
         //Function to show event list
@@ -143,6 +157,8 @@
             for(var i = 0; i < events.length;i++){
                 $("#events").append("<tr><td>"+events[i].name+"</td><td>"+events[i].start+"</td><td>"+events[i].end+"</td></tr>");
             }
+            //update balances on calendar
+            populateCalendar(date.getFullYear(),date.getMonth());
         }
 
 
@@ -186,8 +202,10 @@
                     count++;
                 }else{
                     if(date.getDate() <= last){
+                        var today = getBalance(date);
                         //Add date item to calendar
-                        $(".dates-"+week).append("<td><p>"+date.getDate()+"</p><p class='balance'>"+getBalance(date)+"</p></td>");  
+                        //html adds the day number, number of hours, and how much was added or lost on that day
+                        $(".dates-"+week).append("<td><p>"+date.getDate()+"</p><p class='balance'>"+today+"</p></td>");  
                         date.setDate(date.getDate()+1);
                     }
                 }

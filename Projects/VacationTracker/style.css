@@ -17,5 +17,13 @@
 }
 
 .balance{
-    color: green;
+    color: blue;
+}
+
+.increase{
+    color:green;
+}
+
+.decrease{
+    color: red;
 }
