@@ -7,9 +7,6 @@ green: 7fb800
 gray: 0d2c54
 */
 
-.container{
-    
-}
 
 .day, .weekday{
     min-width: 110px;
@@ -25,7 +22,7 @@ gray: 0d2c54
     background-color: #0d2c54;
 }
 
-.balance, .increase, .decrease{
+.balance, .increase, .decrease, .eventIcon{
     color: white;
     display: inline-block;
     padding: 5px;
@@ -43,4 +40,8 @@ gray: 0d2c54
 
 .decrease{
     background-color: #f6511d;
+}
+
+.eventIcon{
+    background-color: #0d2c54;
 }

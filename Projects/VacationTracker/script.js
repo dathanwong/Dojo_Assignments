@@ -35,10 +35,7 @@
         events.push({"name":name,"start":milStart,"end":milEnd, "readableStart":start, "readableEnd":end});
         //add event to the array
         addEvent(name, milStart, milEnd);
-        console.log(events);
-        console.log(events[0].name + " " + events[0].start + " " + events[0].end);
         populateEvents(events);
-        console.log("Balance on first of month: " + getBalance(new Date(2020,4,3)));
     });
 
     //Function add an event to the days array and recalculate the balances
@@ -189,19 +186,28 @@
                 count++;
             }else{
                 if(today.getDate() <= last){
-                    var todayBalance = days[getDateIndex(today)].balance;
-                    var tomorrowBalance = days[getDateIndex(tomorrow)].balance;
-                    var yesterdayBalance = days[getDateIndex(yesterday)].balance;
+                    var todayIndex = getDateIndex(today);
+                    var todayBalance = days[todayIndex].balance;
+                    var tomorrowBalance = days[todayIndex+1].balance;
+                    var yesterdayBalance = days[todayIndex-1].balance;
                     //Add date item to calendar
-                    //html adds the day number, number of hours, and how much was added or lost on that day
+                    //Add date
+                    var td = "<td><p>"+today.getDate()+"</p>";
+                    //Add vacation balance
                     if(yesterdayBalance > todayBalance){
-                        $(".dates-"+week).append("<td><p>"+today.getDate()+"</p><p class='balance decrease'>"+todayBalance+"</p></td>");  
+                        td += "<p class='balance decrease'>"+todayBalance+"</p>";  
                     }else if (yesterdayBalance < todayBalance){
-                        $(".dates-"+week).append("<td><p>"+today.getDate()+"</p><p class='balance increase'>"+todayBalance+"</p></td>");  
+                        td += "<p class='balance increase'>"+todayBalance+"</p>";  
                     }else{
-                        $(".dates-"+week).append("<td><p>"+today.getDate()+"</p><p class='balance'>"+todayBalance+"</p></td>");  
+                        td += "<p class='balance'>"+todayBalance+"</p>";  
                     }
-                    
+                    //add event
+                    if(days[todayIndex].hasEvent){
+                        td += "<p class='eventIcon'>"+days[todayIndex].event.name+"</p>";
+                    }
+                    //close out <td> element
+                    td += "</td>";
+                    $(".dates-"+week).append(td);
                     today.setDate(today.getDate()+1);
                     tomorrow.setDate(tomorrow.getDate()+1);
                     yesterday.setDate(yesterday.getDate()+1);
