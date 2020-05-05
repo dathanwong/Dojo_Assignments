@@ -23,7 +23,7 @@ class BankAccount:
             return True
 
     def displayAccountInfo(self):
-        print(f"Balance: ${self.balance}")
+        print(f"Balance: ${self.balance:.2f}")
         return self
 
     def yieldInterest(self):
@@ -32,7 +32,7 @@ class BankAccount:
         return self
 
     def __repr__(self):
-        return f"Balance: {self.balance} Interest Rate: {self.intRate}"
+        return f"Balance: {self.balance:.2f} Interest Rate: {self.intRate}"
 
 user1 = BankAccount(.1,100)
 user2 = BankAccount(.2,1)
