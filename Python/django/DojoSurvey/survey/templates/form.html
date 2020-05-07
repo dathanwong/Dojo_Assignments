@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Dojo Survey</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+  </head>
+  <body>
+            <form class="container w-50 px-5 pt-2 mt-3" action="/submit" method="POST">
+                {% csrf_token %}
+                <div class="row my-2">
+                    <span class="col-6"> Your Name: </span> 
+                    <input class="col-6" type="text" name="name">
+                </div>
+                <div class="row my-2">
+                    <span class="col-6">Dojo Location: </span> 
+                    <select class="col-6" name="location" id="location">
+                        <option value="burbank">Burbank</option>
+                        <option value="seattle">Seattle</option>
+                        <option value="boise">Boise</option>
+                        <option value="oakland">Oakland</option>
+                    </select>
+                </div>
+                <div class="row my-2">
+                    <span class="col-6">Favorite Language: </span> 
+                    <select class="col-6" name="favLanguage" id="favLanguage">
+                        <option value="python">Python</option>
+                        <option value="c#">C#</option>
+                        <option value="javascript">Javascript</option>
+                        <option value="java">Java</option>
+                        <option value="html">HTML</option>
+                    </select>
+                </div>
+                <div class="row my-2">
+                    <div class="col-6">
+                        How would you rank Coding Dojo?
+                    </div>
+                    <div class="col-6">
+                        <input class="radio" type="radio" value="1" name="rating"> 1
+                        <input class="radio" type="radio" value="2" name="rating"> 2
+                        <input class="radio" type="radio" value="3" name="rating"> 3
+                        <input class="radio" type="radio" value="4" name="rating"> 4
+                        <input class="radio" type="radio" value="5" name="rating"> 5
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-6">
+                        Which foods do you like?
+                    </div>
+                    <div class="col-6">
+                        <input type="checkbox" name="opt" value="pizza">
+                        <label for="opt">Pizza</label>
+                        <input type="checkbox" name="opt" value="sushi">
+                        <label for="opt">Sushi</label>
+                        <input type="checkbox" name="opt" value="burger">
+                        <label for="opt">Burgers</label>
+                        <input type="checkbox" name="opt" value="fries">
+                        <label for="opt">Fries</label>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <span class="col-6">Comment (optional):</span>
+                </div>
+                <div class="row my-2">
+                    <textarea class="col-12" name="comment" id="comment" cols="30" rows="10"></textarea>
+                </div>
+                <div class="row my-2">
+                    <div class="col-12 text-right">
+                        <button class="btn-primary" type="submit">Submit</button>
+                    </div>
+                </div>
+                
+            </form>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

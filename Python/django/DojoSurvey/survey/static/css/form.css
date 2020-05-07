@@ -1,0 +1,18 @@
+.container{
+    border: 1px solid black;
+}
+
+h2{
+    text-decoration: underline;
+}
+
+a{
+    padding: 10px;
+    background-color: #3C7BFF;
+    color: white;
+}
+
+.radio{
+    margin-right: 10px;
+    margin-left: 10px;
+}
