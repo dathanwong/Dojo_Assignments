@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Ninja Gold</title>
+        {% load static %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row my-4">
+                <div class="col-2">
+                    Your Gold:
+                </div>
+                <div class="col-2 gold">
+                    {{ request.session.gold }}
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-2 border border-dark p-3 mx-2 text-center">
+                    <h1>Farm</h1>
+                    <p>(earns 10-20 golds)</p>
+                    <form action="/farm" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="minGold" value="10">
+                        <input type="hidden" name="maxGold" value="20">
+                        <button class="btn-success" type="submit">Find Gold!</button>
+                    </form>
+                </div>
+                <div class="col-2 border border-dark p-3 mx-2 text-center">
+                    <h1>Cave</h1>
+                    <p>(earns 5-10 golds)</p>
+                    <form action="/cave" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="minGold" value="5">
+                        <input type="hidden" name="maxGold" value="10">
+                        <button class="btn-success" type="submit">Find Gold!</button>
+                    </form>
+                </div>
+                <div class="col-2 border border-dark p-3 mx-2 text-center">
+                    <h1>House</h1>
+                    <p>(earns 2-5 golds)</p>
+                    <form action="/house" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="minGold" value="2">
+                        <input type="hidden" name="maxGold" value="5">
+                        <button class="btn-success" type="submit">Find Gold!</button>
+                    </form>
+                </div>
+                <div class="col-2 border border-dark p-3 mx-2 text-center">
+                    <h1>Casino</h1>
+                    <p>(earns/takes 0-50 golds)</p>
+                    <form action="/casino" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="minGold" value="-50">
+                        <input type="hidden" name="maxGold" value="50">
+                        <button class="btn-success" type="submit">Find Gold!</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                Activities:
+            </div>
+            <div class="col-8">
+                <ul class="textbox border border-dark smooth-scroll list-unstyled px-3">
+                    {% for event in request.session.events %}
+                    <li class="{{event.color}}">{{event.message}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

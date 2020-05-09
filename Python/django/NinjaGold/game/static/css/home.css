@@ -1,0 +1,16 @@
+.gold{
+    border: 1px solid black;
+}
+
+.textbox{
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}
