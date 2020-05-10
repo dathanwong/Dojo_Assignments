@@ -1,1 +1,4 @@
 secret.txt
+my_environments/
+*.sqlite3
+__pycache__/
