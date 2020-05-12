@@ -1,0 +1,32 @@
+python manage.py shell
+
+from home.models import *
+
+Dojo.objects.create(name="Burbank", city="Burbank", state="CA")
+Dojo.objects.create(name="Seattle", city="Seattle", state="WA")
+Dojo.objects.create(name="Boise", city="Boise", state="ID")
+
+Dojo.objects.all().delete()
+
+Dojo.objects.create(name="Burbank", city="Burbank", state="CA")
+Dojo.objects.create(name="Seattle", city="Seattle", state="WA")
+Dojo.objects.create(name="Boise", city="Boise", state="ID")
+
+Ninjas.objects.create(dojo_id=Dojo.objects.get(id=4), first_name="Ross", last_name="Gellar")
+Ninjas.objects.create(dojo_id=Dojo.objects.get(id=4), first_name="Rachel", last_name="Green")
+Ninjas.objects.create(dojo_id=Dojo.objects.get(id=4), first_name="Chandler", last_name="Bing")
+
+Ninjas.objects.create(dojo_id=Dojo.objects.get(id=5), first_name="Monica", last_name="Gellar")
+Ninjas.objects.create(dojo_id=Dojo.objects.get(id=5), first_name="Pheobe", last_name="Buffet")
+Ninjas.objects.create(dojo_id=Dojo.objects.get(id=5), first_name="Joey", last_name="Tribbiani")
+
+Ninjas.objects.create(dojo_id=Dojo.objects.get(id=6), first_name="Ted", last_name="Mosby")
+Ninjas.objects.create(dojo_id=Dojo.objects.get(id=6), first_name="Marshall", last_name="Eriksen")
+Ninjas.objects.create(dojo_id=Dojo.objects.get(id=6), first_name="Barney", last_name="Stinson")
+
+Dojo.objects.first().ninjas.all()
+Dojo.objects.last().ninjas.all()
+
+Ninjas.objects.last().dojo_id
+
+Dojo.objects.create(name="Oakland", city="Oakland", state="CA", desc="LA is better")
