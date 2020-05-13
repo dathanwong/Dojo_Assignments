@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Dojos & Ninjas</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-5">
+                    <h1>Add a Dojo</h1>
+                    <form action="/addDojo" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                <label for="name">Name</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" name="name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="city">City</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" name="city">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="state">State</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" name="state">
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col"></div>
+                            <div class="col">
+                                <button type="submit">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-5">
+                    <h1>Add a Ninja</h1>
+                    <form action="/addNinja" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                <label for="first_name">First Name</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" name="first_name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="last_name">Last Name</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" name="last_name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="dojo">Dojo</label>
+                            </div>
+                                <select class="col" name="dojo" id="dojo">
+                                    {% for dojo in dojos %}
+                                    <option value="{{dojo.name}}">{{dojo.name}}</option>
+                                    {% endfor %}
+                                </select>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col"></div>
+                            <div class="col">
+                                <button type="submit">Add</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row border border-top-2 border-dark my-4"></div>
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-5 col-sm-6">
+                    <h1 class="mb-3 row justify-content-center">All the Dojos</h1>
+                    {% for dojo in dojos %}
+                    <div class="row py-3">
+                        <h4 class="justify-content-center my">Ninjas at the {{dojo.name}} Dojo</h4>
+                        <h4>-{{dojo.ninjas.count}}</h4>
+                        <a href="delete/{{dojo.id}}" class="btn btn-danger btn-sm ml-3">Delete</a>
+                    </div>
+                    {% for ninja in dojo.ninjas.all %}
+                    <ul class="row justify-content-start my-0">
+                        <li>{{ninja.first_name}} {{ninja.last_name}}</li>
+                    </ul>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
