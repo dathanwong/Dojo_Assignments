@@ -4,6 +4,7 @@ from .models import League, Team, Player
 from . import team_maker
 
 def index(request):
+	#For Part I
 	baseball = League.objects.filter(sport="Baseball")
 	women = League.objects.filter(name__icontains="womens")
 	hockey = League.objects.filter(sport__icontains="hockey")
@@ -20,6 +21,29 @@ def index(request):
 	joshuas = Player.objects.filter(first_name="Joshua")
 	jocoop = coopers.exclude(first_name="Joshua")
 	alexWyatt = Player.objects.filter(first_name="Alexander") | Player.objects.filter(first_name="Wyatt")
+	
+	#For Part II
+	atlanticSoccer = Team.objects.filter(league_id = League.objects.filter(name="Atlantic Soccer Conference").first().id)
+	penguins = Player.objects.filter(curr_team_id = Team.objects.filter(team_name="Penguins", location="Boston").first().id)
+	icbcTeams = Team.objects.filter(league_id = League.objects.filter(name="International Collegiate Baseball Conference").first().id)
+	icbcPlayers = []
+	for team in icbcTeams.all():
+		icbcPlayers += Player.objects.filter(curr_team__id=team.id)
+	lopez = []
+	acafTeams = Team.objects.filter(league_id = League.objects.filter(name="American Conference of Amateur Football").first().id)
+	for team in acafTeams.all():
+		lopez += Player.objects.filter(curr_team__id=team.id, last_name="Lopez")
+	footballTeams = Team.objects.filter(league__name__icontains= "football")
+	footballPlayers = []
+	for team in footballTeams:
+		footballPlayers += Player.objects.filter(curr_team__id=team.id)
+	sophiaTeams = Team.objects.filter(curr_players__first_name="Sophia")
+	sophiaLeagues = League.objects.filter(teams__curr_players__first_name="Sophia")
+	flores = Player.objects.filter(last_name="Flores").exclude(curr_team=Team.objects.filter(team_name="Roughriders", location="Washington").first())
+	samEvans = Team.objects.filter(all_players__first_name="Samuel", all_players__last_name="Evans")
+	manitobaPlayers = Player.objects.filter(all_teams__location = "Manitoba", all_teams__team_name="Tiger-Cats")
+	formerVikings = Player.objects.filter(all_teams__location = "Wichita", all_teams__team_name="Vikings").exclude(curr_team__location="Wichita", curr_team__team_name="Vikings")
+	
 	context = {
 		"leagues": League.objects.all(),
 		"teams": Team.objects.all(),
@@ -40,6 +64,17 @@ def index(request):
 		"joshuas": joshuas,
 		"jocoop": jocoop,
 		"alexWyatt": alexWyatt,
+		"atlanticSoccer": atlanticSoccer,
+		"penguins": penguins,
+		"icbcPlayers": icbcPlayers,
+		"lopez": lopez,
+		"footballPlayers": footballPlayers,
+		"sophiaTeams": sophiaTeams,
+		"sophiaLeagues": sophiaLeagues,
+		"flores": flores,
+		"samEvans": samEvans,
+		"manitobaPlayers": manitobaPlayers,
+		"formerVikings": formerVikings,
 	}
 	return render(request, "leagues/index.html", context)
 
