@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import League, Team, Player
-
+from django.db.models import Count
 from . import team_maker
 
 def index(request):
@@ -43,7 +43,13 @@ def index(request):
 	samEvans = Team.objects.filter(all_players__first_name="Samuel", all_players__last_name="Evans")
 	manitobaPlayers = Player.objects.filter(all_teams__location = "Manitoba", all_teams__team_name="Tiger-Cats")
 	formerVikings = Player.objects.filter(all_teams__location = "Wichita", all_teams__team_name="Vikings").exclude(curr_team__location="Wichita", curr_team__team_name="Vikings")
-	
+	jacob = Team.objects.filter(all_players__first_name = "Jacob", all_players__last_name="Gray").exclude(team_name="Colts")
+	joshua = Player.objects.filter(first_name="Joshua", all_teams__league__name="Atlantic Federation of Amateur Baseball Players")
+	twelve = Team.objects.annotate(Count('all_players'))
+	twelve = twelve.filter(all_players__count__gt=11)
+	allPlayers = Player.objects.annotate(Count('all_teams'))
+	allPlayers = allPlayers.order_by('all_teams__count')
+
 	context = {
 		"leagues": League.objects.all(),
 		"teams": Team.objects.all(),
@@ -75,6 +81,10 @@ def index(request):
 		"samEvans": samEvans,
 		"manitobaPlayers": manitobaPlayers,
 		"formerVikings": formerVikings,
+		"jacob": jacob,
+		"joshua": joshua,
+		"twelve": twelve,
+		"allPlayers": allPlayers
 	}
 	return render(request, "leagues/index.html", context)
 
