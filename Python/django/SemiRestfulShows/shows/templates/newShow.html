@@ -18,6 +18,15 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
             <div class="row my-2">
                 <h1>Add a New Show</h1>
             </div>
@@ -27,16 +36,16 @@
             <form action="/shows/create/" method="POST">
                 {% csrf_token %}
                 <div class="row my-2">
-                    <input class="col-6" type="text" name="title">
+                    <input class="col-6" type="text" name="title" required>
                 </div>
                 <div class="row my-2">
                     <div class="col-3">
                         <h4 >Network</h4>
-                        <input class="row" type="text" name="network">
+                        <input class="row" type="text" name="network" required>
                     </div>
                     <div class="col-3">
                         <h4>Release Date</h4>
-                        <input class="row" type="date" name="releaseDate">
+                        <input class="row" type="date" name="releaseDate" required>
                     </div>
                 </div>
                 <div class="row my-2">

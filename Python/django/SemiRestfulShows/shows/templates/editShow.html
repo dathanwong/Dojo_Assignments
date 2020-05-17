@@ -18,25 +18,35 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
             <div class="row my-2">
                 <h1>Edit Show {{show.id}}</h1>
             </div>
             <form action="/shows/{{show.id}}/update" method="POST">
                 {% csrf_token %}
+                <input type="text" value="{{show.id}}" hidden name="id">
                 <div class="row my-2">
                     <h4 class="col-6">Title</h4>
                 </div>
                 <div class="row my-2">
-                    <input class="col-6" type="text" name="title" value="{{show.title}}">
+                    <input required class="col-6" type="text" name="title" value="{{show.title}}">
                 </div>
                 <div class="row my-2">
                     <div class="col-3">
                         <h4 >Network</h4>
-                        <input class="row" type="text" name="network" value="{{show.network}}">
+                        <input required class="row" type="text" name="network" value="{{show.network}}">
                     </div>
                     <div class="col-3">
                         <h4>Release Date</h4>
-                        <input class="row" type="date" name="releaseDate" value=
+                        <input required class="row" type="date" name="releaseDate" value=
                         "{{show.releaseDate|date:'Y-m-d'}}">
                     </div>
                 </div>
