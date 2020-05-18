@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Login & Registration</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        {% load static %}
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            {% if messages %}
+                <div class="row alert-warning">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-6">
+                    <button class="clickme">Click</button>
+                    <form action="/user/create" method="POST">
+                        {% csrf_token %}
+                        <div class="row justify-content-center">
+                            <h1>Registration</h1>
+                        </div>
+                        <div class="row my-2 rowFirstName">
+                            <label class="col-3" for="firstName">First Name</label>
+                            <input required class="col-6 firstName" type="text" name="firstName" value="{{request.session.firstName}}">
+                            <div class="col-3 firstNameError error alert-warning">First name must be at least 2 characters</div>
+                        </div>
+                        <div class="row my-2 rowLastName">
+                            <label class="col-3" for="lastName">Last Name</label>
+                            <input required class="col-6 lastName" type="text" name="lastName" value="{{request.session.lastName}}">
+                            <div class="col-3 lastNameError error alert-warning">Last name must be at least 2 characters</div>
+                        </div>
+                        <div class="row my-2 rowBirthday">
+                            <label class="col-3" for="birthday">Birthday</label>
+                            <input required class="col-6 birthday" type="date" name="birthday" value="{{request.session.birthday}}">
+                            <div class="col-3 birthdayError error alert-warning">Must be 13 years or older to access</div>
+                        </div>
+                        <div class="row my-2 rowEmail">
+                            <label class="col-3" for="email">Email</label>
+                            <input required class="col-6 email" type="text" name="email" value="{{request.session.email}}">
+                            <div class="col-3 emailError error alert-warning">Invalid email address</div>
+                        </div>
+                        <div class="row my-2 rowPassword">
+                            <label class="col-3" for="password">Password</label>
+                            <input required class="col-6 password" type="password" name="password" value="{{request.session.password}}">
+                        </div>
+                        <div class="row my-2 rowConfirmPassword">
+                            <label class="col-3" for="confirmPassword">Confirm PW</label>
+                            <input required class="col-6 confirmPassword" type="password" name="confirmPassword" value="{{request.session.confirmPassword}}">
+                        </div>
+                        <div class="row my-2 justify-content-center">
+                            <button class="btn btn-primary register" type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-6">
+                    <form action="/login" method="POST">
+                        {% csrf_token %}
+                        <div class="row justify-content-center">
+                            <h1>Login</h1>
+                        </div>
+                        <div class="row my-2">
+                            <label class="col-3" for="email">Email</label>
+                            <input required class="col-6" type="text" name="email">
+                        </div>
+                        <div class="row my-2">
+                            <label class="col-3" for="password">Password</label>
+                            <input required class="col-6" type="password" name="password">
+                        </div>
+                        <div class="row my-2 justify-content-center">
+                            <button class="btn btn-primary" type="submit">Log In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="{% static 'js/home.js' %}"></script>
+    </body>
+</html>
